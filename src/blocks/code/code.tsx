@@ -19,7 +19,7 @@ export default function Code({
   if (!code) return null;
 
   return (
-    <Highlight language={language} code={code} theme={themes.nightOwl}>
+    <Highlight language={language ?? ""} code={code} theme={themes.nightOwl}>
       {({ tokens, getLineProps, getTokenProps }) => (
         <pre className="bg-zinc-900 px-4 pb-8 text-xs rounded-md overflow-x-auto">
           <Header code={code} filename={filename} language={language} />
