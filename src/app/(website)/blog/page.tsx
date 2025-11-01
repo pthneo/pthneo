@@ -6,12 +6,6 @@ export const metadata: Metadata = {
   description: "Check out my blog, where I discuss web development, technology, and other topics I find interesting.",
 };
 
-/**
- * TODO:
- * Setup blog system, including tags, dates, content, searching, pagination etc.
- * Setup social images and other metadata
- */
-
 export default function Blog() {
   return (
     <div className="animate-fade-in space-y-6">

@@ -3,7 +3,7 @@ import { DM_Sans, Manrope } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
-import NavigationPane from "@/components/navigation-pane";
+import Sidebar from "@/components/sidebar";
 
 const fontBody = Manrope({
   subsets: ["latin"],
@@ -46,7 +46,7 @@ export default function RootLayout({
           disableTransitionOnChange>
           <div className="container mx-auto flex max-h-screen max-w-4xl flex-col px-4 pt-8 md:pt-16 lg:max-w-7xl lg:flex-row lg:pb-16">
             <div className="lg:sticky lg:top-4 lg:self-start">
-              <NavigationPane />
+              <Sidebar />
             </div>
             <main className="max-h-screen flex-1 p-0 md:pr-4 lg:pt-5 lg:pl-8">
               {children}

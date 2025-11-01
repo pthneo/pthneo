@@ -4,6 +4,9 @@ import { LinkIcon } from "lucide-react"
 import { getPayload } from "payload"
 import config from "@payload-config"
 
+/**
+ * Retrieves the list of projects from the Payload database.
+ */
 async function getProjects() {
   try {
     const payload = await getPayload({ config })
@@ -14,34 +17,26 @@ async function getProjects() {
     return result.docs
   } catch (error) {
     console.error("Error fetching projects:", error)
-    // Fallback to empty array if Payload isn't configured yet
     return []
   }
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 function getIconUrl(icon: any): string {
-  if (!icon) return "/profile.jpeg"
-  
-  // If icon is a string (already a URL), return it
-  if (typeof icon === "string") return icon
-  
-  // If icon is a Payload media object
   if (icon && typeof icon === "object") {
     if (icon.url) return icon.url
     if (icon.filename) return `/media/${icon.filename}`
   }
-  
-  return "/profile.jpeg"
+  return "/placeholder.png"
 }
 
 export default async function ProjectsList() {
   const projects = await getProjects()
   
-  // Fallback to empty state if no projects
   if (projects.length === 0) {
     return (
-      <div className="text-center text-zinc-400 py-12">
-        <p>No projects found. Add projects through the Payload admin panel.</p>
+      <div className="text-center text-sm text-zinc-400 py-12">
+        <p>No projects found.</p>
       </div>
     )
   }
@@ -60,11 +55,8 @@ export default async function ProjectsList() {
                   />
                 </div>
               </div>
-
               <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-
               <p className="text-zinc-400 flex-grow">{project.description}</p>
-
               {project.website && (
               <Link
                 href={`https://${project.website}`}

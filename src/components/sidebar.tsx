@@ -1,15 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import { List, User } from "./icons";
+import { User } from "./icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/avatar";
-import { Button } from "./button";
 import { NavigationSheet } from "./navigation-sheet";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "./theme-toggle";
 
-export default function NavigationPane() {
+/**
+ * A sidebar component for the website.
+ */
+export default function Sidebar() {
   const pathname = usePathname();
 
   return (

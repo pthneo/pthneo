@@ -64,15 +64,5 @@
     "trailingComma": "none",
     "bracketSpacing": true,
     "bracketSameLine": true
-  },
-  "eslintConfig": {
-    "extends": [
-      "next/core-web-vitals",
-      "next/typescript",
-      "prettier"
-    ],
-    "rules": {
-      "@typescript-eslint/no-empty-interface": "off"
-    }
   }
 }

@@ -1,7 +1,9 @@
 import { buildConfig } from "payload";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { BlocksFeature } from "@payloadcms/richtext-lexical";
 import sharp from "sharp";
+import { code } from "./src/blocks/code/config";
 
 /**
  * Creates the Payload config for the blog.
@@ -58,7 +60,14 @@ export default buildConfig({
         {
           name: "content",
           type: "richText",
-          editor: lexicalEditor(),
+          editor: lexicalEditor({
+            features: ({ defaultFeatures }) => [
+              ...defaultFeatures,
+              BlocksFeature({
+                blocks: [code],
+              }),
+            ],
+          }),
         },
         {
           name: "publishedDate",
@@ -86,6 +95,9 @@ export default buildConfig({
       upload: {
         staticDir: 'media',
         mimeTypes: ['image/*'],
+      },
+      access: {
+        read: () => true,
       },
       fields: [
         {
