@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
         port: '4189',
         pathname: '/api/media/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'i.scdn.co',
+      },
     ],
   },
 };

@@ -3,7 +3,6 @@ import { mongooseAdapter } from "@payloadcms/db-mongodb";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { BlocksFeature } from "@payloadcms/richtext-lexical";
 import sharp from "sharp";
-import { code } from "./src/blocks/code/config";
 
 /**
  * Creates the Payload config for the blog.
@@ -12,50 +11,67 @@ export default buildConfig({
   secret: process.env.PAYLOAD_SECRET!,
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL!,
   db: mongooseAdapter({
-    url: process.env.DATABASE_URI!,
+    url: process.env.DATABASE_URI!
   }),
   sharp,
   admin: {
-    user: "users",
+    user: "users"
   },
   collections: [
     {
       slug: "projects",
       admin: {
-        useAsTitle: "title",
+        useAsTitle: "title"
       },
       fields: [
         {
           name: "title",
           type: "text",
-          required: true,
+          required: true
         },
         {
           name: "description",
           type: "textarea",
-          required: true,
+          required: true
         },
         {
           name: "website",
-          type: "text",
+          type: "text"
         },
         {
           name: "icon",
           type: "upload",
-          relationTo: "media",
-        },
-      ],
+          relationTo: "media"
+        }
+      ]
     },
     {
       slug: "posts",
       admin: {
-        useAsTitle: "title",
+        useAsTitle: "title"
       },
       fields: [
         {
           name: "title",
           type: "text",
-          required: true,
+          required: true
+        },
+        {
+          name: "slug",
+          type: "text",
+          required: true
+        },
+        {
+          name: "thumbnail",
+          type: "upload",
+          relationTo: "media",
+          required: true
+        },
+        {
+          name: "banner",
+          type: "upload",
+          relationTo: "media",
+          required: true
         },
         {
           name: "content",
@@ -64,15 +80,71 @@ export default buildConfig({
             features: ({ defaultFeatures }) => [
               ...defaultFeatures,
               BlocksFeature({
-                blocks: [code],
-              }),
-            ],
-          }),
+                blocks: [
+                  {
+                    slug: "code",
+                    interfaceName: "Code",
+                    fields: [
+                      {
+                        name: "filename",
+                        type: "text"
+                      },
+                      {
+                        name: "language",
+                        type: "select",
+                        options: [
+                          {
+                            label: "JavaScript",
+                            value: "javascript"
+                          },
+                          {
+                            label: "TypeScript",
+                            value: "typescript"
+                          },
+                          {
+                            label: "TSX",
+                            value: "tsx"
+                          },
+                          {
+                            label: "JSX",
+                            value: "jsx"
+                          },
+                          {
+                            label: "Python",
+                            value: "python"
+                          },
+                          {
+                            label: "HTML",
+                            value: "html"
+                          },
+                          {
+                            label: "CSS",
+                            value: "css"
+                          },
+                          {
+                            label: "JSON",
+                            value: "json"
+                          }
+                        ],
+                        defaultValue: "typescript"
+                      },
+                      {
+                        name: "code",
+                        type: "code",
+                        label: false,
+                        required: true
+                      }
+                    ]
+                  }
+                ]
+              })
+            ]
+          })
         },
         {
           name: "publishedDate",
           type: "date",
-          required: true,
+          required: true
         },
         {
           name: "tags",
@@ -81,30 +153,34 @@ export default buildConfig({
             {
               name: "tag",
               type: "text",
-            },
+              required: true
+            }
           ],
+          required: true
         },
         {
           name: "excerpt",
           type: "textarea",
-        },
-      ],
+          required: true
+        }
+      ]
     },
     {
       slug: "media",
       upload: {
-        staticDir: 'media',
-        mimeTypes: ['image/*'],
+        staticDir: "media",
+        mimeTypes: ["image/*"]
       },
       access: {
-        read: () => true,
+        read: () => true
       },
       fields: [
         {
           name: "alt",
           type: "text",
-        },
-      ],
+          required: true
+        }
+      ]
     },
     {
       slug: "users",
@@ -112,10 +188,9 @@ export default buildConfig({
       fields: [
         {
           name: "name",
-          type: "text",
-        },
-      ],
-    },
-  ],
+          type: "text"
+        }
+      ]
+    }
+  ]
 });
-

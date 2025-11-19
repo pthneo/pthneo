@@ -1,6 +1,6 @@
 // app/blog/page.tsx
 import Banner from "@/components/banner";
-import PostsList, { Post } from "@/components/posts";
+import PostsList from "@/components/posts";
 import PostsListSkeleton from "@/components/posts-skeleton";
 import { getPayload } from 'payload';
 import configPromise from '@payload-config';
@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   description: "Check out my blog, where I discuss web development, technology, and other topics I find interesting.",
 };
 
+/**
+ * Retrieves the list of posts from the Payload database.
+ */
 async function PostsData() {
   const payload = await getPayload({ config: configPromise });
   
@@ -21,14 +24,30 @@ async function PostsData() {
     sort: '-publishedDate',
   });
 
-  return <PostsList posts={posts as Post[]} />;
+  const postsData = posts.map((post) => ({
+    id: post.id.toString(),
+    title: post.title,
+    excerpt: post.excerpt,
+    publishedDate: post.publishedDate.toString(),
+    tags: post.tags.map((tag: { tag: string }) => ({ tag: tag.tag })),
+    slug: post.slug.toString(),
+    thumbnail: {
+      url: post.thumbnail.url,
+      alt: post.thumbnail.alt,
+    },
+  }));
+
+  return <PostsList posts={postsData} />;
 }
 
+/**
+ * A simple blog page.
+ */
 export default function Blog() {
   return (
-    <div className="animate-fade-in space-y-6">
+    <div className="animate-in space-y-6 pb-20">
       <Banner imageUrl="/blog-banner.webp" alt="Banner image, that titles the page Blog." />
-      <div className="px-2 pt-6">
+      <div className="pt-6">
         <Suspense fallback={<PostsListSkeleton />}>
           <PostsData />
         </Suspense>

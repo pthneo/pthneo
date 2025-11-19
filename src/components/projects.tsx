@@ -1,8 +1,8 @@
 import Link from "next/link"
 import Image from "next/image"
-import { LinkIcon } from "lucide-react"
 import { getPayload } from "payload"
 import config from "@payload-config"
+import { Link as LinkIcon } from "./icons"
 
 /**
  * Retrieves the list of projects from the Payload database.

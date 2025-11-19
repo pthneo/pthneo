@@ -7,10 +7,10 @@ export default function Home() {
   return (
     <div className="space-y-6">
       <Banner
-        imageUrl="/banner-home.svg"
+        imageUrl="/home-banner.png"
         alt="Banner image, that says Ben Schenk, web developer."
       />
-      <div className="animate-fade-in px-2 pt-6">
+      <div className="animate-fade-in pt-6 pb-20">
         <h1 className="mb-4 text-3xl font-bold sm:text-4xl">Welcome</h1>
         <p className="text-foreground mb-4 sm:text-xl">
           I&apos;m Ben, a web developer specialising in React and Next.js. I have been in the web design

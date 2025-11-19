@@ -11,8 +11,7 @@ import {
   SheetTrigger
 } from "@/components/sheet";
 import { useMediaQuery } from "@/components/use-media-query";
-import Image from "next/image";
-import { List, User, X } from "@/components/icons";
+import { List, User } from "@/components/icons";
 import { Button } from "@/components/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/avatar";
@@ -44,7 +43,7 @@ export function NavigationSheet() {
           <div className="mt-0.5 flex flex-col">
             <div className="flex items-center gap-4 pb-10">
               <Avatar className="size-12">
-                <AvatarImage src="https://github.com/shadcn.aspng" className="size-12" />
+                <AvatarImage src="profile.jpeg" className="size-12" />
                 <AvatarFallback className="size-12">
                   <User weight="thin" />
                 </AvatarFallback>

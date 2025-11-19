@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function Projects() {
   return (
-    <div className="animate-fade-in space-y-6">
+    <div className="animate-fade-in space-y-6 pb-20">
       <Banner imageUrl="/projects-banner.webp" alt="Banner image, that titles the page Projects." />
       <div className="pt-6">
         <ProjectsList />

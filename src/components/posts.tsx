@@ -1,147 +1,139 @@
+"use client";
 
-'use client'
+import { useState, useMemo } from "react";
+import Link from "next/link";
+import { Input } from "@/components/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from "@/components/select";
+import { MagnifyingGlass } from "./icons";
+import Image from "next/image";
 
-import { useState, useMemo } from 'react'
-import Link from 'next/link'
+type Sort = "oldest" | "newest" | "a-z" | "z-a";
 
-export type Post = {
-  id: string
-  title: string
-  excerpt?: string
-  publishedDate: string
-  tags?: Array<{ tag: string }>
-  slug?: string
-}
+export default function PostsList({
+  posts
+}: {
+  posts: Array<{
+    id: string;
+    title: string;
+    excerpt: string;
+    publishedDate: string;
+    tags: Array<{ tag: string }>;
+    slug: string;
+    thumbnail: {
+      url: string;
+      alt: string;
+    };
+  }>;
+}) {
+  // Search query & sort state
+  const [query, setQuery] = useState("");
+  const [sort, setSort] = useState<Sort>("newest");
 
-type PostsListProps = {
-  posts: Post[]
-}
-
-export default function PostsList({ posts }: PostsListProps) {
-  const [searchQuery, setSearchQuery] = useState('')
-  const [selectedTag, setSelectedTag] = useState<string>('all')
-  const [sortBy, setSortBy] = useState<'date' | 'title'>('date')
-
-  // Extract all unique tags
-  const allTags = useMemo(() => {
-    const tagSet = new Set<string>()
-    posts.forEach(post => {
-      post.tags?.forEach(t => {
-        if (t.tag) tagSet.add(t.tag)
-      })
-    })
-    return Array.from(tagSet).sort()
-  }, [posts])
-
-  // Filter and sort posts
   const filteredPosts = useMemo(() => {
-    const filtered = posts.filter(post => {
-      const matchesSearch = searchQuery === '' || 
-        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        post.excerpt?.toLowerCase().includes(searchQuery.toLowerCase())
+    // Filter based on the search query
+    const filtered = posts.filter((post) => {
+      return (
+        query === "" ||
+        post.title.toLowerCase().includes(query.toLowerCase()) ||
+        post.excerpt.toLowerCase().includes(query.toLowerCase())
+      );
+    });
 
-      const matchesTag = selectedTag === 'all' || 
-        post.tags?.some(t => t.tag === selectedTag)
-
-      return matchesSearch && matchesTag
-    })
-
+    // Sort posts
     filtered.sort((a, b) => {
-      if (sortBy === 'date') {
-        return new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime()
-      } else {
-        return a.title.localeCompare(b.title)
+      switch (sort) {
+        case "oldest":
+          return new Date(a.publishedDate).getTime() - new Date(b.publishedDate).getTime();
+        case "a-z":
+          return a.title.localeCompare(b.title);
+        case "z-a":
+          return b.title.localeCompare(a.title);
+        default:
+        case "newest":
+          return new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime();
       }
-    })
+    });
 
-    return filtered
-  }, [posts, searchQuery, selectedTag, sortBy])
+    return filtered;
+  }, [posts, query, sort]);
 
   return (
     <div className="space-y-6">
-      {/* Search and Filter Controls */}
-      <div className="space-y-4">
-        <input
-          type="text"
-          placeholder="Search posts..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full rounded-lg border border-gray-300 px-4 py-3 text-base outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
-        />
-
-        <div className="flex flex-wrap gap-4">
-          <select 
-            value={selectedTag} 
-            onChange={(e) => setSelectedTag(e.target.value)}
-            className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
-          >
-            <option value="all">All Tags</option>
-            {allTags.map(tag => (
-              <option key={tag} value={tag}>{tag}</option>
-            ))}
-          </select>
-
-          <select 
-            value={sortBy} 
-            onChange={(e) => setSortBy(e.target.value as 'date' | 'title')}
-            className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm outline-none transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"
-          >
-            <option value="date">Sort by Date</option>
-            <option value="title">Sort by Title</option>
-          </select>
+      {/* Search & sort */}
+      <div className="animate-in flex w-full items-center justify-between gap-4">
+        <div className="relative w-full">
+          <MagnifyingGlass className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+          <Input
+            type="text"
+            placeholder="Search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            className="pl-9"
+          />
+        </div>
+        <div className="flex items-center gap-2 w-[33%]">
+          <p className="text-muted-foreground text-sm">Sort By</p>
+          <Select value={sort} onValueChange={(value) => setSort(value as Sort)}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Sort" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="oldest">Oldest</SelectItem>
+                <SelectItem value="newest">Newest</SelectItem>
+                <SelectItem value="a-z">A-Z</SelectItem>
+                <SelectItem value="z-a">Z-A</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </div>
       </div>
-
-      {/* Results count */}
-      <p className="text-sm text-gray-600">
-        Showing {filteredPosts.length} of {posts.length} posts
-      </p>
-
-      {/* Posts Grid */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {/* Posts list */}
+      <div className="grid grid-cols-1 gap-6">
         {filteredPosts.length === 0 ? (
-          <p className="col-span-full py-12 text-center text-gray-500">No posts found</p>
+          <div className="col-span-full">
+            <p className="text-muted-foreground">No posts found</p>
+          </div>
         ) : (
-          filteredPosts.map(post => (
-            <Link 
-              key={post.id} 
+          filteredPosts.map((post) => (
+            <Link
+              key={post.id}
               href={`/blog/${post.slug || post.id}`}
-              className="group space-y-3 rounded-lg border border-gray-200 p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
-            >
-              <h2 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600">
-                {post.title}
-              </h2>
-              
-              <time className="block text-sm text-gray-500">
-                {new Date(post.publishedDate).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
-              </time>
-
-              {post.excerpt && (
-                <p className="line-clamp-3 text-gray-600">
-                  {post.excerpt}
-                </p>
-              )}
-
-              {post.tags && post.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2 pt-2">
-                  {post.tags.map((item, i) => (
-                    <span 
-                      key={i} 
-                      className="rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700"
-                    >
-                      {item.tag}
-                    </span>
-                  ))}
+              className="group grid grid-cols-3 w-full rounded-xl p-2 lg:p-6 xl:p-8 gap-4 sm:gap-6 xl:gap-8 transition-all hover:bg-zinc-100 dark:hover:bg-zinc-900">
+                <div className="relative col-span-1 flex items-center justify-center">
+                  <Image
+                    src={post.thumbnail.url}
+                    alt={post.thumbnail.alt}
+                    height={630}
+                    width={1200}
+                    className="rounded-sm object-contain dark:border-0"
+                  />
                 </div>
-              )}
+                <div className="col-span-2 flex flex-col gap-3 justify-start">
+                  <h3 className="text-xl font-semibold">{post.title}</h3>
+                  <p className="flex text-zinc-600 dark:text-zinc-400 line-clamp-3">{post.excerpt}</p>
+                  <div className="flex flex-wrap gap-2 items-center">
+                    {post.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="rounded-full bg-zinc-200 px-2 py-1 text-xs text-zinc-400 dark:bg-zinc-800">
+                        {tag.tag}
+                      </span>
+                    ))}
+                    <p className="text-xs text-zinc-600 dark:text-zinc-400">{new Date(post.publishedDate).toLocaleDateString("en-AU", { year: "numeric", month: "long", day: "numeric" })}</p>
+                  </div>
+                </div>
             </Link>
           ))
         )}
       </div>
     </div>
-  )
+  );
 }
