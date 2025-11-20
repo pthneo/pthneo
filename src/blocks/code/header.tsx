@@ -20,13 +20,13 @@ export default function Header({ code, filename, language }: { code: string; fil
   }
 
   return (
-    <div className="bg-zinc-800 rounded-t-md p-2 flex items-center justify-between gap-2">
+    <div className="bg-zinc-800 rounded-t-md px-2 flex items-center justify-between gap-2">
       <div className="flex items-center gap-2">
-        <span className="text-xs text-white/50">{ filename ?? "Code" }</span>
+        <span className="text-xs text-white/50 font-mono">{ filename ?? "Code" }</span>
       </div>
       <div className="flex items-center gap-2">
-        <span className="text-xs text-white/50">{copied ? "Copied" : language ?? "Copy"}</span>
-        <Button variant="ghost" size="icon" onClick={handleCopy}>
+        <span className="text-xs text-white/50 font-mono">{copied ? "Copied" : language ?? "Copy"}</span>
+        <Button variant="ghost" size="icon" onClick={handleCopy} className="cursor-pointer">
           {copied ? (
             <CheckSquare className="size-4 text-green-500" />
           ) : (

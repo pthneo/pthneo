@@ -15,12 +15,12 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="bg-card mb-0 w-full lg:w-64 lg:h-[calc(100vh-2rem)] lg:flex lg:flex-col">
-      <nav className="space-y-4 lg:p-4">
+    <aside className="bg-card mb-0 w-full lg:w-64 lg:h-[calc(100vh-6rem)] lg:sticky lg:top-16 lg:flex lg:flex-col">
+      <nav className="space-y-4 lg:px-4 lg:pt-4">
         <div className="mb-8 flex w-full items-center justify-between">
           <div className="flex items-center gap-4">
             <Avatar className="size-12">
-              <AvatarImage src="profile.jpeg" className="size-12" />
+              <AvatarImage src="/profile.jpeg" className="size-12" />
               <AvatarFallback className="size-12">
                 <User weight="thin" />
               </AvatarFallback>
