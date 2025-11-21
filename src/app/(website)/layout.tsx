@@ -53,7 +53,7 @@ export default function RootLayout({
           disableTransitionOnChange>
           <div className="container mx-auto flex max-w-4xl flex-col px-4 pt-8 md:pt-16 lg:max-w-7xl lg:flex-row lg:pb-8">
             <Sidebar />
-            <main className="flex-1 p-0 md:pr-4 lg:pt-5 lg:pl-8">
+            <main className="flex-1 min-w-0 p-0 md:pr-4 lg:pt-5 lg:pl-8">
               {children}
             </main>
           </div>
