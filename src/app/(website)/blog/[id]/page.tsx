@@ -7,6 +7,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Calendar } from "@/components/icons";
 import { AspectRatio } from "@/components/aspect-ratio";
+import Image from "next/image";
 
 /**
  * Retrieves a post from the database by its slug.
@@ -76,7 +77,6 @@ const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
       <p className="mb-4 text-justify leading-7 text-zinc-900 dark:text-zinc-200">{children}</p>
     );
   },
-  // Links
   link: ({ node, nodesToJSX }: { node: any; nodesToJSX: any }) => {
     const children = nodesToJSX({ nodes: node.children });
     const href = node.fields?.url || node.url || "#";
@@ -129,9 +129,23 @@ const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
     );
   },
   upload: ({ node }: { node: any; nodesToJSX: any }) => {
+    // Payload CMS lexical upload nodes store the relation in node.value
+    const media = node.value || node;
+    const imageUrl = media?.url || (media?.filename ? `/media/${media.filename}` : null);
+    const altText = media?.alt || node.alt || "Image";
+    
+    if (!imageUrl) {
+      return null;
+    }
+    
     return (
-      <div className="flex w-full justify-center items-center">
-        <img src={node.url} alt={node.alt} width={500} height={300} className="mb-6" />
+      <div className="flex relative w-full h-[400px] justify-center items-center mb-6">
+        <Image 
+          src={imageUrl} 
+          alt={altText} 
+          fill
+          className="rounded-md"
+        />
       </div>
     );
   },
@@ -193,16 +207,16 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
   return (
     <div className="animate-fade-in flex-0 space-y-6 pb-6">
       <Banner imageUrl={post.banner.url || "/blog-banner.webp"} alt="Banner image for the post." />
-      <article className="min-w-0 space-y-10 pt-6">
+      <article className="min-w-0 space-y-10 pt-6 px-4 md:px-0">
         <div>
-          <h1 className="mb-4 text-3xl font-bold sm:text-4xl">{post.title}</h1>
+          <h1 className="mb-4 text-3xl font-bold sm:text-4xl line-clamp-4">{post.title}</h1>
           <div className="flex items-center gap-6">
             {post.tags && post.tags.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((item: { tag: string }, i: number) => (
                   <span
                     key={i}
-                    className="bg-muted rounded-full px-3 py-1 text-sm text-zinc-900 dark:text-zinc-200">
+                    className="bg-zinc-200 dark:bg-zinc-800 rounded-full max-w-44 text-justify line-clamp-1 px-3 py-1 text-sm text-zinc-900 dark:text-zinc-200">
                     {item.tag}
                   </span>
                 ))}

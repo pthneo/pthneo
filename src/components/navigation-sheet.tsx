@@ -43,7 +43,7 @@ export function NavigationSheet() {
           <div className="mt-0.5 flex flex-col">
             <div className="flex items-center gap-4 pb-10">
               <Avatar className="size-12">
-                <AvatarImage src="profile.jpeg" className="size-12" />
+                <AvatarImage src="/profile.jpeg" className="size-12" />
                 <AvatarFallback className="size-12">
                   <User weight="thin" />
                 </AvatarFallback>

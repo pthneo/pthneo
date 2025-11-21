@@ -79,7 +79,7 @@ export default function PostsList({
           />
         </div>
         <div className="flex items-center gap-2 w-[33%]">
-          <p className="text-muted-foreground text-sm">Sort By</p>
+          <h3 className="font-semibold">Sort</h3>
           <Select value={sort} onValueChange={(value) => setSort(value as Sort)}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Sort" />
@@ -106,8 +106,8 @@ export default function PostsList({
             <Link
               key={post.id}
               href={`/blog/${post.slug || post.id}`}
-              className="group grid grid-cols-3 w-full rounded-xl p-2 lg:p-6 xl:p-8 gap-4 sm:gap-6 xl:gap-8 transition-all hover:bg-zinc-100 dark:hover:bg-zinc-900">
-                <div className="relative col-span-1 flex items-center justify-center">
+              className="group grid grid-cols-3 p-8 md:p-4 w-full rounded-xl gap-4 sm:gap-6 xl:gap-8 transition-all hover:bg-zinc-100 dark:hover:bg-zinc-900">
+                <div className="relative col-span-3 sm:col-span-1 flex items-center justify-center">
                   <Image
                     src={post.thumbnail.url}
                     alt={post.thumbnail.alt}
@@ -116,14 +116,14 @@ export default function PostsList({
                     className="rounded-sm object-contain dark:border-0"
                   />
                 </div>
-                <div className="col-span-2 flex flex-col gap-3 justify-start">
-                  <h3 className="text-xl font-semibold">{post.title}</h3>
-                  <p className="flex text-zinc-600 dark:text-zinc-400 line-clamp-3">{post.excerpt}</p>
-                  <div className="flex flex-wrap gap-2 items-center">
+                <div className="col-span-3 sm:col-span-2 flex flex-col gap-3 justify-start">
+                  <h3 className="text-xl font-semibold line-clamp-1">{post.title}</h3>
+                  <p className="text-zinc-600 dark:text-zinc-400 line-clamp-3 text-justify sm:line-clamp-1 md:line-clamp-2 xl:line-clamp-3">{post.excerpt}</p>
+                  <div className="flex flex-wrap gap-y-3 gap-x-2 items-center">
                     {post.tags.map((tag, index) => (
                       <span
                         key={index}
-                        className="rounded-full bg-zinc-200 px-2 py-1 text-xs text-zinc-400 dark:bg-zinc-800">
+                        className="bg-zinc-200 dark:bg-zinc-800 rounded-full max-w-44 text-justify line-clamp-1 px-3 py-1 text-sm text-zinc-900 dark:text-zinc-200">
                         {tag.tag}
                       </span>
                     ))}
