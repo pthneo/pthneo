@@ -11,7 +11,7 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/select";
-import { MagnifyingGlass } from "./icons";
+import { Laptop, MagnifyingGlass } from "./icons";
 import Image from "next/image";
 
 type Sort = "oldest" | "newest" | "a-z" | "z-a";
@@ -66,7 +66,6 @@ export default function PostsList({
 
   return (
     <div className="space-y-6">
-      {/* Search & sort */}
       <div className="animate-in flex w-full items-center justify-between gap-4">
         <div className="relative w-full">
           <MagnifyingGlass className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
@@ -95,11 +94,13 @@ export default function PostsList({
           </Select>
         </div>
       </div>
-      {/* Posts list */}
       <div className="grid grid-cols-1 gap-6">
         {filteredPosts.length === 0 ? (
-          <div className="col-span-full">
-            <p className="text-muted-foreground">No posts found</p>
+          <div className="col-span-full flex items-center justify-center pt-12">
+            <div className="flex flex-col items-center gap-3">
+              <Laptop weight="thin" className="size-12 text-muted-foreground"/>
+              <p className="text-muted-foreground">No posts found</p>
+            </div>
           </div>
         ) : (
           filteredPosts.map((post) => (

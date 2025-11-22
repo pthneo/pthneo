@@ -6,7 +6,6 @@ import Banner from "@/components/banner";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Calendar } from "@/components/icons";
-import { AspectRatio } from "@/components/aspect-ratio";
 import Image from "next/image";
 
 /**
@@ -34,10 +33,10 @@ async function getPost(slug: string) {
 /**
  * Custom converter for styling all rich text elements.
  */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
   ...defaultConverters,
   blocks: {
-    /* eslint-disable @typescript-eslint/no-explicit-any */
     code: ({ node }: { node: any }) => (
       <Code
         code={node.fields.code}
@@ -129,7 +128,6 @@ const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
     );
   },
   upload: ({ node }: { node: any; nodesToJSX: any }) => {
-    // Payload CMS lexical upload nodes store the relation in node.value
     const media = node.value || node;
     const imageUrl = media?.url || (media?.filename ? `/media/${media.filename}` : null);
     const altText = media?.alt || node.alt || "Image";

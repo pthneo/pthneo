@@ -17,7 +17,6 @@ export default function AboutMe() {
     <div className="animate-fade-in space-y-6 pb-6">
       <Banner imageUrl="/about-banner.webp" alt="Banner image, that titles the page About Me." />
       <div className="flex w-full flex-col space-y-8 px-2 pt-6">
-        {/* Photo Section */}
         <div className="flex gap-6">
           <div className="relative size-24 md:size-32 lg:size-44 flex-shrink-0">
             <Avatar className="h-full w-full">
