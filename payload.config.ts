@@ -1,5 +1,6 @@
 import { buildConfig } from "payload";
 import { mongooseAdapter } from "@payloadcms/db-mongodb";
+import { s3Storage } from '@payloadcms/storage-s3'
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { BlocksFeature } from "@payloadcms/richtext-lexical";
 import sharp from "sharp";
@@ -13,6 +14,23 @@ export default buildConfig({
   db: mongooseAdapter({
     url: process.env.DATABASE_URI!
   }),
+  plugins: [
+    s3Storage({
+      collections: {
+        media: true,
+      },
+      bucket: process.env.S3_BUCKET!,
+      config: {
+        endpoint: "https://bucket.benschenk.dev",
+        region: process.env.S3_REGION!,
+        forcePathStyle: true,
+        credentials: {
+          accessKeyId: process.env.S3_KEY_ID!,
+          secretAccessKey: process.env.S3_SECRET!,
+        },
+      }
+    })
+  ],
   sharp,
   admin: {
     user: "users"
@@ -168,7 +186,7 @@ export default buildConfig({
     {
       slug: "media",
       upload: {
-        staticDir: "media",
+        disableLocalStorage: true,
         mimeTypes: ["image/*"]
       },
       access: {
