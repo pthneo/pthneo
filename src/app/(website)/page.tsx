@@ -2,6 +2,13 @@ import { Button } from "@/components/button";
 import Banner from "@/components/banner";
 import { GithubLogo, XLogo, EnvelopeSimple, YoutubeLogo } from "@/components/icons";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function Home() {
   return (

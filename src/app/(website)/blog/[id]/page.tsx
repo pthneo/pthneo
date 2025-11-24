@@ -178,19 +178,50 @@ export async function generateMetadata({
     };
   }
 
+  const postUrl = `/blog/${id}`;
+  const thumbnailUrl = post.thumbnail?.url || "/home-og.png";
+  const tags = post.tags?.map((tag: { tag: string }) => tag.tag) || [];
+
   return {
     title: post.title,
     description: post.excerpt || "A blog post by Ben Schenk",
+    
     openGraph: {
+      type: "article",
       title: post.title,
       description: post.excerpt || "A blog post by Ben Schenk",
-      images: [post.thumbnail.url]
+      url: postUrl,
+      siteName: "Ben Schenk",
+      locale: "en_AU",
+      publishedTime: post.publishedDate ? new Date(post.publishedDate).toISOString() : undefined,
+      authors: ["Ben Schenk"],
+      tags: tags,
+      images: [
+        {
+          url: thumbnailUrl,
+          width: 1200,
+          height: 630,
+          alt: post.thumbnail?.alt || post.title,
+        }
+      ],
     },
+    
     twitter: {
+      card: "summary_large_image",
       title: post.title,
       description: post.excerpt || "A blog post by Ben Schenk",
-      images: [post.thumbnail.url]
-    }
+      creator: "@pthneo",
+      images: [thumbnailUrl],
+    },
+    
+    creator: "Ben Schenk",
+    publisher: "Ben Schenk",
+    authors: [{ name: "Ben Schenk", url: "https://benschenk.dev" }],
+    keywords: tags,
+    
+    alternates: {
+      canonical: postUrl,
+    },
   };
 }
 

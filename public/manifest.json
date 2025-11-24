@@ -1,0 +1,22 @@
+{
+  "name": "Ben Schenk - Web Developer",
+  "short_name": "Ben Schenk",
+  "description": "Hi! I'm Ben, a web developer. Visit my website to learn more about me and my work.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "developer", "blog"],
+  "lang": "en-AU",
+  "dir": "ltr"
+}
+

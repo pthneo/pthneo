@@ -10,6 +10,27 @@ import { Suspense } from "react";
 export const metadata: Metadata = {
   title: "Blog",
   description: "Check out my blog, where I discuss web development, technology, and other topics I find interesting.",
+  openGraph: {
+    title: "Blog | Ben Schenk",
+    description: "Check out my blog, where I discuss web development, technology, and other topics I find interesting.",
+    url: "/blog",
+    images: [
+      {
+        url: "/blog-og.png",
+        width: 1200,
+        height: 630,
+        alt: "Blog | Ben Schenk",
+      },
+    ],
+  },
+  twitter: {
+    title: "Blog | Ben Schenk",
+    description: "Check out my blog, where I discuss web development, technology, and other topics I find interesting.",
+    images: ["/blog-og.png"],
+  },
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 /**

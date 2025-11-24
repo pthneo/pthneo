@@ -9,7 +9,27 @@ import { SpotifyNowPlaying } from "@/components/spotify";
 
 export const metadata: Metadata = {
   title: "About Me",
-  description: "Find out more about me, my background in law and web development, and my skills."
+  description: "Find out more about me, my background in law and web development, and my skills.",
+  openGraph: {
+    title: "About Me | Ben Schenk",
+    url: "/about",
+    images: [
+      {
+        url: "/about-og.png",
+        width: 1200,
+        height: 630,
+        alt: "About Me | Ben Schenk",
+      },
+    ],
+  },
+  twitter: {
+    title: "About Me | Ben Schenk",
+    description: "Find out more about me, my background in law and web development, and my skills.",
+    images: ["/about-og.png"],
+  },
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutMe() {

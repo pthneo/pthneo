@@ -26,7 +26,7 @@ export default function Header({ code, filename, language }: { code: string; fil
       </div>
       <div className="flex items-center gap-2">
         <span className="text-xs text-white/50 font-mono">{copied ? "Copied" : language ?? "Copy"}</span>
-        <Button variant="ghost" size="icon" onClick={handleCopy} className="cursor-pointer">
+        <Button variant="ghost" size="icon" onClick={handleCopy} className="cursor-pointer hover:bg-zinc-700">
           {copied ? (
             <CheckSquare className="size-4 text-green-500" />
           ) : (

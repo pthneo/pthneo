@@ -24,12 +24,49 @@ const fontMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://benschenk.dev"),
   title: {
     default: "Ben Schenk: Web Developer",
     template: "%s | Ben Schenk"
   },
   description: "Hi! I'm Ben, a web developer. Visit my website to learn more about me and my work.",
-  icons: [{ rel: "icon", url: "/icon.png" }]
+  keywords: ["web developer", "React", "Next.js", "fullstack developer", "freelance developer", "TypeScript"],
+  authors: [{ name: "Ben Schenk", url: "https://benschenk.dev" }],
+  creator: "Ben Schenk",
+  publisher: "Ben Schenk",
+  alternates: {
+    canonical: "https://benschenk.dev",
+  },
+  icons: {
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
+  },
+  manifest: "/manifest.json",
+  openGraph: {
+    type: "website",
+    locale: "en_AU",
+    url: "https://benschenk.dev",
+    siteName: "Ben Schenk",
+    title: "Ben Schenk | Web Developer",
+    description: "Hi! I'm Ben, a web developer. Visit my website to learn more about me and my work.",
+    images: [
+      {
+        url: "/home-og.png",
+        width: 1200,
+        height: 630,
+        alt: "Ben Schenk | Web Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ben Schenk | Web Developer",
+    description: "Hi! I'm Ben, a web developer. Visit my website to learn more about me and my work.",
+    creator: "@pthneo",
+    site: "@pthneo",
+    images: ["/home-og.png"],
+  },
 };
 
 export default function RootLayout({

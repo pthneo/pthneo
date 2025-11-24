@@ -7,6 +7,27 @@ import { Suspense } from "react";
 export const metadata: Metadata = {
   title: "Projects",
   description: "Find out more about my latest web development and software projects, and view some website demos.",
+  openGraph: {
+    title: "Projects | Ben Schenk",
+    description: "Find out more about my latest web development and software projects, and view some website demos.",
+    url: "/projects",
+    images: [
+      {
+        url: "/projects-og.png",
+        width: 1200,
+        height: 630,
+        alt: "Projects | Ben Schenk",
+      },
+    ],
+  },
+  twitter: {
+    title: "Projects | Ben Schenk",
+    description: "Find out more about my latest web development and software projects, and view some website demos.",
+    images: ["/projects-og.png"],
+  },
+  alternates: {
+    canonical: "/projects",
+  },
 };
 
 export default function Projects() {
