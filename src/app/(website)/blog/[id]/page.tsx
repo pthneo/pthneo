@@ -8,6 +8,16 @@ import { notFound } from "next/navigation";
 import { Calendar } from "@/components/icons";
 import Image from "next/image";
 
+// Enable incremental static regeneration
+export const revalidate = 3600;
+export const dynamicParams = true;
+export async function generateStaticParams() {
+  if (process.env.NEXT_PHASE === 'phase-production-build') {
+    return [];
+  }
+  return [];
+}
+
 /**
  * Retrieves a post from the database by its slug.
  *

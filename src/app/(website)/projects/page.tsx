@@ -30,6 +30,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = 'force-dynamic';
+
 export default function Projects() {
   return (
     <div className="animate-fade-in space-y-6 pb-6">

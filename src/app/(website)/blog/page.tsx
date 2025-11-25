@@ -33,6 +33,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const dynamic = 'force-dynamic';
+
 /**
  * Retrieves the list of posts from the Payload database.
  */
