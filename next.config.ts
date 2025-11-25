@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'benschenk.dev',
+        pathname: '/api/media/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'i.scdn.co',
       },
       {

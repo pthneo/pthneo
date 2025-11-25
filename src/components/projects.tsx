@@ -13,6 +13,7 @@ async function getProjects() {
     const result = await payload.find({
       collection: "projects",
       limit: 100,
+      depth: 1, // Populate upload fields
     })
     return result.docs
   } catch (error) {
@@ -24,8 +25,8 @@ async function getProjects() {
 /* eslint-disable @typescript-eslint/no-explicit-any */
 function getIconUrl(icon: any): string {
   if (icon && typeof icon === "object") {
+    // Use the URL directly from Payload (e.g., https://benschenk.dev/api/media/file/...)
     if (icon.url) return icon.url
-    if (icon.filename) return `/media/${icon.filename}`
   }
   return "/placeholder.png"
 }
