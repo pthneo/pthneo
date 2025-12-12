@@ -68,7 +68,7 @@ export default function AboutMe() {
                   size={80}
                 />
                 <div>
-                  <p className="font-semibold">Swell</p>
+                  <p className="font-semibold">Chronostasis</p>
                   <p className="text-sm text-muted-foreground">An app for tracking your life - your habits, exercise, stretching, finances and more.</p>
                 </div>
               </div>

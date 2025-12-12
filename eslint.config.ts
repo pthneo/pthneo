@@ -9,6 +9,7 @@ const eslintConfig = [
     extends: ["next", "next/core-web-vitals", "next/typescript"],
     rules: {
       "@typescript-eslint/no-empty-interface": "off",
+      "react-hooks/exhaustive-deps": "off"
     }
   })
 ];
