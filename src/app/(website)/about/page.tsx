@@ -69,22 +69,12 @@ export default function AboutMe() {
                 />
                 <div>
                   <p className="font-semibold">Chronostasis</p>
-                  <p className="text-sm text-muted-foreground">An app for tracking your life - your habits, exercise, stretching, finances and more.</p>
+                  <p className="text-sm text-muted-foreground">Advanced finance management, made fast and intuitive. </p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
                 <ProgressBar
-                  value={15}
-                  size={80}
-                />
-                <div>
-                  <p className="font-semibold">Formic</p>
-                  <p className="text-sm text-muted-foreground">A form builder library for JavaScript creating powerful, performant and type-safe forms.</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <ProgressBar
-                  value={35}
+                  value={45}
                   size={80}
                 />
                 <div>
