@@ -64,6 +64,16 @@ export default function AboutMe() {
               <h2 className="text-xl font-bold">What I&apos;m Working On</h2>
               <div className="flex items-center gap-4">
                 <ProgressBar
+                  value={5}
+                  size={80}
+                />
+                <div>
+                  <p className="font-semibold">Buckle</p>
+                  <p className="text-sm text-muted-foreground">An open-source orchestration and introspection UI for web projects. </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4">
+                <ProgressBar
                   value={10}
                   size={80}
                 />
