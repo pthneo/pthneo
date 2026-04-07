@@ -9,7 +9,7 @@ import { SpotifyNowPlaying } from "@/components/spotify";
 
 export const metadata: Metadata = {
   title: "About Me",
-  description: "Find out more about me, my background in law and web development, and my skills.",
+  description: "Find out more about me, my background in tech and web development, and my skills.",
   openGraph: {
     title: "About Me | Ben Schenk",
     url: "/about",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     title: "About Me | Ben Schenk",
-    description: "Find out more about me, my background in law and web development, and my skills.",
+    description: "Find out more about me, my background in tech and web development, and my skills.",
     images: ["/about-og.png"],
   },
   alternates: {
@@ -48,7 +48,7 @@ export default function AboutMe() {
           </div>
           <div className="flex-1">
             <p className="text-foreground mb-4 sm:text-lg">
-              Nice to meet you! I&apos;m a law student turned software developer, working mainly on
+              Nice to meet you! I&apos;m a student and software developer, working mainly on
               the web. I freelance for small businesses, startups and non-profits, as well as
               building my own applications.
             </p>
@@ -68,8 +68,8 @@ export default function AboutMe() {
                   size={80}
                 />
                 <div>
-                  <p className="font-semibold">Buckle</p>
-                  <p className="text-sm text-muted-foreground">An open-source orchestration and introspection UI for web projects. </p>
+                  <p className="font-semibold">Chronostasis</p>
+                  <p className="text-sm text-muted-foreground">Advanced finance management, made fast and intuitive. </p>
                 </div>
               </div>
               <div className="flex items-center gap-4">
@@ -78,8 +78,8 @@ export default function AboutMe() {
                   size={80}
                 />
                 <div>
-                  <p className="font-semibold">Chronostasis</p>
-                  <p className="text-sm text-muted-foreground">Advanced finance management, made fast and intuitive. </p>
+                  <p className="font-semibold">Buckle</p>
+                  <p className="text-sm text-muted-foreground">An open-source orchestration and introspection UI for web projects. </p>
                 </div>
               </div>
               <div className="flex items-center gap-4">

@@ -67,20 +67,20 @@ export default function PostsList({
   return (
     <div className="space-y-6">
       <div className="animate-in flex w-full items-center justify-between gap-4">
-        <div className="relative w-full">
+        <div className="relative max-w-full">
           <MagnifyingGlass className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
           <Input
             type="text"
             placeholder="Search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            className="pl-9"
+            className="pl-9 2xs:w-48 xs:w-64 sm:w-80"
           />
         </div>
-        <div className="flex items-center gap-2 w-[33%]">
+        <div className="flex items-center gap-2">
           <h3 className="font-semibold">Sort</h3>
           <Select value={sort} onValueChange={(value) => setSort(value as Sort)}>
-            <SelectTrigger className="w-full">
+            <SelectTrigger className="w-28 sm:w-44">
               <SelectValue placeholder="Sort" />
             </SelectTrigger>
             <SelectContent>
@@ -96,7 +96,7 @@ export default function PostsList({
       </div>
       <div className="grid grid-cols-1 gap-6">
         {filteredPosts.length === 0 ? (
-          <div className="col-span-full flex items-center justify-center pt-12">
+          <div className="col-span-full flex items-center justify-center pt-20">
             <div className="flex flex-col items-center gap-3">
               <Laptop weight="thin" className="size-12 text-muted-foreground"/>
               <p className="text-muted-foreground">No posts found</p>

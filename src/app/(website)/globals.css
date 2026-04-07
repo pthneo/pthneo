@@ -9,6 +9,8 @@
   --font-body: var(--font-body);
   --font-mono: var(--font-mono);
   --tracking-tightest: -0.09em;
+  --breakpoint-2xs: 380px;
+  --breakpoint-xs: 480px;
 }
 
 :root {
