@@ -35,7 +35,7 @@ export const metadata: Metadata = {
 export default function AboutMe() {
   return (
     <div className="animate-fade-in space-y-6 pb-6">
-      <Banner imageUrl="/about-banner.webp" alt="Banner image, that titles the page About Me." />
+      <Banner imageUrl="/about-banner.webp" alt="Artsy banner image." />
       <div className="flex w-full flex-col space-y-8 px-2 pt-6">
         <div className="flex gap-6">
           <div className="relative size-24 md:size-32 lg:size-44 flex-shrink-0">
@@ -46,6 +46,7 @@ export default function AboutMe() {
               </AvatarFallback>
             </Avatar>
           </div>
+          <h1 className="sr-only">About Me</h1>
           <div className="flex-1">
             <p className="text-foreground mb-4 sm:text-lg">
               Nice to meet you! I&apos;m a student and software developer, working mainly on

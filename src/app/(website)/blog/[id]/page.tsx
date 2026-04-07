@@ -245,7 +245,7 @@ export default async function PostPage({ params }: { params: Promise<{ id: strin
 
   return (
     <div className="animate-fade-in flex-0 space-y-6 pb-6">
-      <Banner imageUrl={post.banner.url || "/blog-banner.webp"} alt="Banner image for the post." />
+      <Banner imageUrl={post.banner.url || "/blog-banner.webp"} alt="Artwork for the post." />
       <article className="min-w-0 space-y-10 pt-6 px-4 md:px-0">
         <div>
           <h1 className="mb-4 text-3xl font-bold sm:text-4xl line-clamp-4">{post.title}</h1>

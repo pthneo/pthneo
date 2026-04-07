@@ -35,7 +35,8 @@ export const dynamic = 'force-dynamic';
 export default function Projects() {
   return (
     <div className="animate-fade-in space-y-6 pb-6">
-      <Banner imageUrl="/projects-banner.webp" alt="Banner image, that titles the page Projects." />
+      <Banner imageUrl="/projects-banner.webp" alt="Artsy banner image." />
+      <h1 className="sr-only">Projects</h1>
       <div className="pt-6">
         <Suspense fallback={<ProjectsListSkeleton />}>
           <ProjectsList />

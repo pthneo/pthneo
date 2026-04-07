@@ -15,10 +15,11 @@ export default function Home() {
     <div className="space-y-6">
       <Banner
         imageUrl="/home-banner.png"
-        alt="Banner image, that says Ben Schenk, web developer."
+        alt="Artsy banner image."
       />
       <div className="animate-fade-in pt-6 pb-6">
-        <h1 className="mb-4 text-3xl font-bold sm:text-4xl">Welcome</h1>
+        <h1 className="sr-only">Ben Schenk, web developer.</h1>
+        <h2 className="mb-4 text-3xl font-bold sm:text-4xl">Welcome</h2>
         <p className="text-foreground mb-4 sm:text-xl">
           I&apos;m Ben, a web developer specialising in React and Next.js. I have been in the web design
           industry for around five years, and have worked on projects for startups, non-profits, and

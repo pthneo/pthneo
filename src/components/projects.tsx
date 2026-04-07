@@ -56,8 +56,8 @@ export default async function ProjectsList() {
                   />
                 </div>
               </div>
-              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-              <p className="text-zinc-400 flex-grow">{project.description}</p>
+              <h2 className="text-xl font-semibold mb-2">{project.title}</h2>
+              <p className="text-zinc-600 dark:text-zinc-400 flex-grow">{project.description}</p>
               {project.website && (
               <Link
                 href={`https://${project.website}`}

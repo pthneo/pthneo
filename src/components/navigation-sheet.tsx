@@ -43,13 +43,13 @@ export function NavigationSheet() {
           <div className="mt-0.5 flex flex-col">
             <div className="flex items-center gap-4 pb-10">
               <Avatar className="size-12">
-                <AvatarImage src="/profile.jpeg" className="size-12" />
+                <AvatarImage src="/profile.jpeg" alt="My profile picture." className="size-12" />
                 <AvatarFallback className="size-12">
                   <User weight="thin" />
                 </AvatarFallback>
               </Avatar>
               <div>
-                <h1 className="text-2xl font-bold">Ben Schenk</h1>
+                <h3 className="text-2xl font-bold">Ben Schenk</h3>
                 <p className="text-muted-foreground text-sm">Web Developer</p>
               </div>
             </div>

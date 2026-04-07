@@ -69,7 +69,8 @@ async function PostsData() {
 export default function Blog() {
   return (
     <div className="animate-in space-y-6 pb-6">
-      <Banner imageUrl="/blog-banner.webp" alt="Banner image, that titles the page Blog." />
+      <Banner imageUrl="/blog-banner.webp" alt="Artsy banner image." />
+      <h1 className="sr-only">Blog</h1>
       <div className="pt-6">
         <Suspense fallback={<PostsListSkeleton />}>
           <PostsData />
