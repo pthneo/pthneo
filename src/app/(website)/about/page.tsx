@@ -55,24 +55,14 @@ export default function AboutMe() {
             </p>
             <p className="text-foreground mb-4 sm:text-lg">
               I specialise in building fullstack apps for the web, but I also build APIs,
-              microservices, mobile applications and games. I also tutor in web development and 
+              microservices, mobile applications and games. I also tutor in web development and
               computer science.
             </p>
           </div>
         </div>
         <div className="grid grid-cols-1 mt-4 gap-6 md:grid-cols-2">
-            <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-6">
               <h2 className="text-xl font-bold">What I&apos;m Working On</h2>
-              <div className="flex items-center gap-4">
-                <ProgressBar
-                  value={5}
-                  size={80}
-                />
-                <div>
-                  <p className="font-semibold">Chronostasis</p>
-                  <p className="text-sm text-muted-foreground">Advanced finance management, made fast and intuitive. </p>
-                </div>
-              </div>
               <div className="flex items-center gap-4">
                 <ProgressBar
                   value={10}
@@ -92,9 +82,19 @@ export default function AboutMe() {
                   <p className="font-semibold">Morgana</p>
                   <p className="text-sm text-muted-foreground">The perfect companion tool for your next TTRPG campaign.</p>
                 </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <ProgressBar
+                value={65}
+                size={80}
+              />
+              <div>
+                <p className="font-semibold">Chronostasis</p>
+                <p className="text-sm text-muted-foreground">Schedule meetings with natural language instead of a calendar grid. </p>
               </div>
             </div>
-            <SpotifyNowPlaying />
+            </div>
+          <SpotifyNowPlaying />
         </div>
       </div>
     </div>

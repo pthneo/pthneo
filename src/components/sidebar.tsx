@@ -86,7 +86,7 @@ export default function Sidebar() {
       <div className="hidden lg:mt-auto lg:block lg:p-4">
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <p className="text-muted-foreground hidden pl-3 text-sm lg:block">© 2025 Ben Schenk</p>
+          <p className="text-muted-foreground hidden pl-3 text-sm lg:block">© 2026 Ben Schenk</p>
         </div>
       </div>
     </aside>

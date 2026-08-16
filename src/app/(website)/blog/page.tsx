@@ -39,8 +39,11 @@ export const dynamic = 'force-dynamic';
  * Retrieves the list of posts from the Payload database.
  */
 async function PostsData() {
+  // timeout for 60 seconds
+  await new Promise((resolve) => setTimeout(resolve, 60000));
+  return
   const payload = await getPayload({ config: configPromise });
-  
+
   const { docs: posts } = await payload.find({
     collection: 'posts',
     limit: 1000,
